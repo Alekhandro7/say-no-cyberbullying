@@ -1,16 +1,3 @@
-import os
-os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
-
-import numpy as np
-import numpy
-import re
-
-from tensorflow.python.keras.layers import Dense, recurrent, Input,  Dropout, Embedding
-from tensorflow.python.keras.models import Sequential
-from keras._tf_keras.keras.preprocessing.text import Tokenizer, text_to_word_sequence
-from keras._tf_keras.keras.preprocessing.sequence import pad_sequences
-from tensorflow.python.keras.engine import data_adapter
-
 from telethon.sync import TelegramClient
 import csv
 from telethon.tl.functions.messages import GetHistoryRequest
