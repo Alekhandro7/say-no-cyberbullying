@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bullying</title>
+    <style>
+        .button {
+            display: inline-block;
+            background: #80DEEA;
+            color: #0000FF;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 250px auto;
+        }
+    </style>
+</head>
+<body>
+    Вы успешно зашли в приложение
+    {{ parse_print() }}
+    <form>
+        <label for="number_chat">Номер чата:</label>
+        <input type="text" id="number_chat" name="number_chat" required>
+        <button onclick=sendData()>Send number</button>
+    </form>
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+    <script>
+        let tg=window.Telegram.WebApp;
+        async function sendData() {
+            const number_chat=document.getElementById('number_chat').value;
+
+            const data1={number_chat: number_chat};
+
+            try {
+                const response = await fetch('/api/process_data1', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data1)
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    alert(result.message);
+                    window.location.href = '/process';
+                } else {
+                    alert('Ошибка при отправке данных.');
+                }
+            } catch (error) {
+                console.error('Ошибка:', error);
+                alert('Произошла ошибка.');
+            }
+        }
+    </script>
+</body>
+</html>
